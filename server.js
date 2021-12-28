@@ -4,6 +4,8 @@ const path = require("path");
 const app = express();
 var https = require("https");
 var axios = require("axios").default;
+var config = require("./config");
+
 app.use(express.static(path.join(__dirname + "/public")));
 
 app.use(
@@ -16,9 +18,9 @@ app.set("view engine", "ejs");
 var workout = [];
 
 app
-  .route("/")
+  .route("/search")
   .get(function (req, res) {
-    res.render("main");
+    res.render("search");
   })
   .post(function (req, res) {
     const bodyPart = req.body.bodyPart;
@@ -29,7 +31,7 @@ app
       url: "https://exercisedb.p.rapidapi.com/exercises",
       headers: {
         "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-        "x-rapidapi-key": "f328efc5ebmsh85d1af30b0aecf0p13be2bjsn3a1e02d80801",
+        "x-rapidapi-key": config.MY_KEY,
       },
     };
 
@@ -54,10 +56,9 @@ app
           const result = json.filter((exercise) => exercise.target === target);
           console.log("3 " + result);
           workout.push(result);
-        } else if (equipment === "") {
+        } else if (equipment === "" && target === "") {
           const result = json.filter(
-            (exercise) =>
-              exercise.bodyPart === bodyPart && exercise.target === target
+            (exercise) => exercise.bodyPart === bodyPart
           );
           console.log("4 " + result);
           workout.push(result);
@@ -75,11 +76,13 @@ app
           );
           console.log("6 " + result);
           workout.push(result);
-        } else if (equipment === "" && target === "" && bodyPart === "") {
+        } else if (equipment === "") {
           console.log("7 " + json);
           const result = json.filter(
-            (exercise) => exercise.bodyPart === bodyPart
+            (exercise) =>
+              exercise.bodyPart === bodyPart && exercise.target === target
           );
+          workout.push(result);
         } else if (equipment != "" && target != "" && bodyPart != "") {
           const result = json.filter(
             (exercise) =>
@@ -109,7 +112,7 @@ app
   })
   .post(function (req, res) {
     workout = [];
-    res.redirect("/");
+    res.redirect("/search");
   });
 
 const port = process.env.PORT || 8081;
