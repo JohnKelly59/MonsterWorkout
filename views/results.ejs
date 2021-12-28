@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <title>WorkoutMonster</title>
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <link href="/mstyles.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <h1>Exercises</h1>
+    <form action="/result" method="post">
+      <button class="btn btn-lg btn-warning" type="submit" name="button">
+        Back
+      </button>
+    </form>
+
+    <div class="container-fluid">
+      <div class="row cw">
+        <% if (workout[0][0] == null){ %>
+        <h2>No results</h2>
+        <% }else{ %> <% for(var i = 0; i < workout[0].length; i++){ %>
+        <div class="col-lg-4">
+          <div
+            id="cards"
+            class="card text-light bg-dark mb-3"
+            style="max-width: 18rem"
+          >
+            <div class="card-header">
+              <h2><%= workout[0][i].name %></h2>
+            </div>
+            <div class="card-body">
+              <p class="card-title"><%= workout[0][i].equipment %></p>
+              <p class="card-text"><%= workout[0][i].target %></p>
+              <img
+                class="card-text"
+                src="<%= workout[0][i].gifUrl %>"
+                width="200"
+              />
+            </div>
+          </div>
+        </div>
+        <% } %> <% } %>
+      </div>
+    </div>
+  </body>
+</html>

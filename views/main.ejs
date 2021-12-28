@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <title>WorkoutMonster</title>
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <link href="/mstyles.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <h1>Search Workout</h1>
+    <form action="/" method="post">
+      <div class="form-floating">
+        <select id="equip" name="bodyPart" class="form-control-lg">
+          <option value="">Body Part</option>
+          <option value="back">back</option>
+          <option value="cardio">cardio</option>
+          <option value="chest">chest</option>
+          <option value="lower arms">body weight</option>
+          <option value="lower legs">lower legs</option>
+          <option value="neck">neck</option>
+          <option value="shoulders">shoulders</option>
+          <option value="upper arms">upper arms</option>
+          <option value="upper legs">upper legs</option>
+          <option value="waist">waist</option>
+        </select>
+      </div>
+      <div>
+        <select id="equip" name="target" class="form-control-lg">
+          <option value="">Target Muscle</option>
+          <option value="abductors">abductors</option>
+          <option value="abs">abs</option>
+          <option value="adductors">adductors</option>
+          <option value="biceps">biceps</option>
+          <option value="calves">calves</option>
+          <option value="cardiovascular system">cardiovascular system</option>
+          <option value="delts">delts</option>
+          <option value="forarms">forarms</option>
+          <option value="glutes">glutes</option>
+          <option value="hamstrings">hamstrings</option>
+          <option value="lats">lats</option>
+          <option value="leator scapulae">leator scapulae</option>
+          <option value="pectorals">pectorals</option>
+          <option value="quads">quads</option>
+          <option value="serratus anterior">serratus anterior</option>
+          <option value="spine">spine</option>
+          <option value="traps">traps</option>
+          <option value="triceps">triceps</option>
+          <option value="upper back">upper back</option>
+        </select>
+      </div>
+      <div>
+        <select id="equip" name="equipment" class="form-control-lg">
+          <option value="">equipment</option>
+          <option value="assisted">assisted</option>
+          <option value="band">band</option>
+          <option value="barbell">barbell</option>
+          <option value="body weight">body weight</option>
+          <option value="bosu ball">bosu ball</option>
+          <option value="cable">cable</option>
+          <option value="dumbbell">dumbell</option>
+          <option value="elliptical machine">elliptical machine</option>
+          <option value="ez barbell">ez barbell</option>
+          <option value="hammer">hammer</option>
+          <option value="kettlebell">kettlebell</option>
+          <option value="leverage machine">leverage machine</option>
+          <option value="medicine ball">medicine ball</option>
+          <option value="olympic barbell">olympic barbell</option>
+          <option value="resistance band">resistance band</option>
+          <option value="roller">roller</option>
+          <option value="rope">rope</option>
+          <option value="skierg machine">skierg machine</option>
+          <option value="sled machine">sled machine</option>
+          <option value="smith machine">smith machine</option>
+          <option value="stability ball">stability ball</option>
+          <option value="stationary bike">stationary bike</option>
+          <option value="stepmill machine">stepmill machine</option>
+          <option value="tire">tire</option>
+          <option value="trap bar">trap bar</option>
+          <option value="upper body ergometer">upper body ergometer</option>
+          <option value="weighted">weighted</option>
+          <option value="wheel roller">wheel roller</option>
+        </select>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Work</button>
+    </form>
+  </body>
+</html>
