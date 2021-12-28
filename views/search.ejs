@@ -1,44 +1,17 @@
-<!DOCTYPE html>
-<html lang="en" class="h-100">
-  <head>
-    <title>WorkoutMonster</title>
-    <!-- Bootstrap core CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-      crossorigin="anonymous"
-    ></script>
-    <link href="/mstyles.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-      crossorigin="anonymous"
-    />
-  </head>
-
-  <body>
+<%- include("partials/header.ejs") -%>
+<link href="/styles.css" rel="stylesheet" />
+  <body class=" h-100 text-center text-danger bg-dark" >
+    <div class="search ">
+      <div class="form-box">
     <h1>Search Workout</h1>
     <form action="/search" method="post">
-      <div class="form-floating">
-        <select id="equip" name="bodyPart" class="form-control-lg">
+      <div>
+        <select id="equip" name="bodyPart" class="form-control-lg" style="width: 100%;">
           <option value="">Body Part</option>
           <option value="back">back</option>
           <option value="cardio">cardio</option>
           <option value="chest">chest</option>
-          <option value="lower arms">body weight</option>
+          <option value="lower arms">lower arms</option>
           <option value="lower legs">lower legs</option>
           <option value="neck">neck</option>
           <option value="shoulders">shoulders</option>
@@ -48,7 +21,7 @@
         </select>
       </div>
       <div>
-        <select id="equip" name="target" class="form-control-lg">
+        <select id="equip" name="target" class="form-control-lg" style="width: 100%;">
           <option value="">Target Muscle</option>
           <option value="abductors">abductors</option>
           <option value="abs">abs</option>
@@ -72,8 +45,8 @@
         </select>
       </div>
       <div>
-        <select id="equip" name="equipment" class="form-control-lg">
-          <option value="">equipment</option>
+        <select id="equip" name="equipment" class="form-control-lg" style="width: 100%;">
+          <option value="">Equipment</option>
           <option value="assisted">assisted</option>
           <option value="band">band</option>
           <option value="barbell">barbell</option>
@@ -104,7 +77,9 @@
           <option value="wheel roller">wheel roller</option>
         </select>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Search</button>
+      <button class="w-100 btn btn-lg btn-danger text-dark" type="submit">Search</button>
     </form>
+  </div>
+</div>
   </body>
 </html>

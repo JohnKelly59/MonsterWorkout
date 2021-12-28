@@ -7,9 +7,9 @@
 
     <div class="container-fluid">
       <div class="row cw">
-        <% if (workout[0] == null){ %>
+        <% if (rworkout[0] == null){ %>
         <h2>No results</h2>
-        <% }else{ %> <% for(var i = 0; i < workout[0].length; i++){ %>
+        <% }else{ %> <% for(var i = 0; i < rWorkout[0].length; i++){ %>
         <div class="col-lg-4">
           <div
             id="cards"
@@ -20,8 +20,8 @@
               <h2><%= workout[0][i].name %></h2>
             </div>
             <div class="card-body">
-              <h4 class="card-title"><%= workout[0][i].equipment %></h4>
-              <h4 class="card-text"><%= workout[0][i].target %></h4>
+              <h4 class="card-title"><%= rworkout[0][i].equipment %></h4>
+              <h4 class="card-text"><%= rworkout[0][i].target %></h4>
               <img
                 class="card-text"
                 src="<%= workout[0][i].gifUrl %>"
