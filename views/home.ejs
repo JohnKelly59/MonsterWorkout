@@ -1,5 +1,5 @@
 <%- include("partials/header.ejs") -%>
-
+<link href="/styles.css" rel="stylesheet" />
 <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -18,20 +18,19 @@
 
   
 </head>
-<body>
+<body class="bgs">
   
 <main>
 <div class="container py-4">
   <header class="pb-3 mb-4 border-bottom">
-    <a  class="d-flex align-items-center text-dark text-decoration-none">
-      <span class="fs-4">Today's Plan</span>
-    </a>
+      <p class="fs-4 d-flex align-items-center text-light text-decoration-none"><%= name %> Plan for Today </p>
+    
   </header>
   <div class="p-5 mb-4 bg-light rounded-3">
     <div class="container-fluid py-5">
       <h1 class="display-5 fw-bold">Sign up</h1>
       <p class="col-md-8 fs-4">Sign up to MonsterWorkout and become a member of the MonsterClub. As a memeber you are able to save workouts, create custom plans, keep track of your progress, and more.</p>
-      <button href="/register" class="btn btn-primary btn-lg" type="button">Click here</button>
+      <button href="/register" class="btn btn-danger btn-lg" type="button">Click here</button>
     </div>
   </div>
 
@@ -40,19 +39,18 @@
       <div class="h-100 p-5 text-white bg-dark rounded-3">
         <h2>Start a Random Workout</h2>
         <p>MonsterWokrout's random workout feature creates a customized workout depending on what body part you want to work on for the day. Try it out and see what exercise you get.</p>
-        <button href="/random" class="btn btn-outline-light" type="button">Randomize</button>
+        <a href="/random"><button  class="btn btn-outline-danger" type="button">Randomize</button></a>
       </div>
     </div>
     <div class="col-md-6">
       <div class="h-100 p-5 bg-light border rounded-3">
         <h2>Create a Workout</h2>
         <p>Want to become a self-made monster and create your own worokut? Search through our catolog of exercises and pick the ones that will benefit you the most.</p>
-        <button href="/search" class="btn btn-outline-secondary" type="button">Create</button>
+        <a href="/search"><button class="btn btn-outline-danger" type="button">Create</button></a>
       </div>
     </div>
   </div>
-
-  <footer class="pt-3 mt-4 text-muted border-top">
+  <footer class="pt-3 mt-4  text-danger border-top">
     J-Kizzy
   </footer>
 </div>

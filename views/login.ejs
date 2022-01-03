@@ -1,0 +1,51 @@
+<%- include("partials/header.ejs") -%>
+<link href="/styles.css" rel="stylesheet" />
+<body class="h-100 text-center text-light bgs">
+  <h1 class="">Login</h1>
+
+  <main class="form-signin search">
+    <form class="" action="/auth/login" method="post">
+      <img
+        class="mb-4"
+        src="/images/userpic.png"
+        alt=""
+        width="72"
+        height="65"
+      />
+      <h2 class="h3 mb-3 fw-normal">Please sign in</h2>
+      <% if (messages.error) {%> <%= messages.error %> <% } %>
+      <div class="form-floating">
+        <input
+          name="email"
+          type="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+        />
+        <label for="floatingInput" class="text-dark">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input
+          name="password"
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+        />
+        <label for="floatingPassword" class="text-dark">Password</label>
+      </div>
+      <br />
+      <button class="w-100 btn btn-lg btn-dark" type="submit">Log-in</button>
+    </form>
+    <br />
+    <div>
+      <a href="/auth/google" class="w-100 btn btn-lg btn-dark" type="submit">
+        <i class="fab fa-google left"></i> Log-in with google</a
+      >
+    </div>
+    <br />
+
+    <a href="/register" class="">Register</a>
+    <p class="mt-5 mb-3">J-Kizzy</p>
+  </main>
+</body>

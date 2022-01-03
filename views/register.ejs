@@ -1,0 +1,53 @@
+<%- include("partials/header.ejs") -%>
+<link href="/styles.css" rel="stylesheet" />
+<body class="h-100 text-center text-light bgs">
+  <h1>Sign up</h1>
+  <main class="form-signin search">
+    <form class="" action="/register" method="post">
+      <img
+        class="mb-4"
+        src="/images/registerpic.png"
+        alt=""
+        width="72"
+        height="65"
+      />
+      <h2 class="h3 mb-3 fw-normal">Please Enter Credentials</h2>
+      <% if (message) {%> <%= message %> <% } %>
+      <div class="form-floating text-dark">
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+        />
+        <label for="floatingInput ">Email address</label>
+      </div>
+      <div class="form-floating text-dark">
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name"
+        />
+        <label for="floatingInput">Name</label>
+      </div>
+      <div class="form-floating text-dark">
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+      <br />
+      <button class="w-100 btn btn-lg btn-dark" type="submit">Register</button>
+    </form>
+    <br />
+    <a href="/login" class="text-light">Login</a>
+    <p class="mt-5 mb-3 text-dark">J-Kizzy</p>
+  </main>
+</body>

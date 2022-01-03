@@ -1,13 +1,13 @@
 <%- include("partials/header.ejs") -%>
 <link href="/styles.css" rel="stylesheet" />
-  <body class=" h-100 text-center text-danger bg-dark" >
+  <body class=" h-100 text-center text-light bgs" >
     <div class="search ">
-      <div class="form-box">
+      <div class="form-box p-5 mb-4 bg-dark rounded-3">
     <h1>Search Workout</h1>
     <form action="/search" method="post">
       <div>
         <select id="equip" name="bodyPart" class="form-control-lg" style="width: 100%;">
-          <option value="">Body Part</option>
+          <option  selected value="">Body Part</option>
           <option value="back">back</option>
           <option value="cardio">cardio</option>
           <option value="chest">chest</option>
@@ -22,7 +22,7 @@
       </div>
       <div>
         <select id="equip" name="target" class="form-control-lg" style="width: 100%;">
-          <option value="">Target Muscle</option>
+          <option  selected value="">Target Muscle</option>
           <option value="abductors">abductors</option>
           <option value="abs">abs</option>
           <option value="adductors">adductors</option>
@@ -46,7 +46,7 @@
       </div>
       <div>
         <select id="equip" name="equipment" class="form-control-lg" style="width: 100%;">
-          <option value="">Equipment</option>
+          <option selected value="">Equipment</option>
           <option value="assisted">assisted</option>
           <option value="band">band</option>
           <option value="barbell">barbell</option>
@@ -79,6 +79,34 @@
       </div>
       <button class="w-100 btn btn-lg btn-danger text-dark" type="submit">Search</button>
     </form>
+  </div>
+  <div class="container-fluid">
+    <div class="row cw">
+      <% if (workout[0] == null){ %>
+      <h2>No results</h2>
+      <% }else{ %> <% for(var i = 0; i < workout[0].length; i++){ %>
+      <div class="col-lg-4">
+        <div
+          id="cards"
+          class="card text-center text-dark bg-light mb-3"
+          style="max-width: 18rem"
+        >
+          <div class="card-header">
+            <h2><%= workout[0][i].name %></h2>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title"><%= workout[0][i].equipment %></h4>
+            <h4 class="card-text"><%= workout[0][i].target %></h4>
+            <img
+              class="card-text"
+              src="<%= workout[0][i].gifUrl %>"
+              width="200"
+            />
+          </div>
+        </div>
+      </div>
+      <% } %> <% } %>
+    </div>
   </div>
 </div>
   </body>

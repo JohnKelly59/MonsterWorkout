@@ -1,9 +1,9 @@
 <%- include("partials/header.ejs") -%>
 <link href="/styles.css" rel="stylesheet" />
-<body class="h-100 text-center text-danger bg-dark">
+<body class="h-100 text-center text-light bgs">
   <div class="search">
-    <div class="form-box">
-      <h1>Search Workout</h1>
+    <div class="form-box p-5 mb-4 bg-dark rounded-3">
+      <h1>Randomize</h1>
       <form action="/random" method="post">
         <div>
           <select
@@ -13,7 +13,8 @@
             style="width: 100%"
             required
           >
-            <option disabled value="">Body Part</option>
+            <option disabled selected value="">Body Part</option>
+            <option value="waist">Abs</option>
             <option value="back">Back</option>
             <option value="cardio">Cardio</option>
             <option value="chest">Chest</option>
@@ -25,7 +26,7 @@
         <div>
           <select
             name="num"
-            class="custom-select mr-sm-2"
+            class="custom-select mr-sm-2 form-control-lg"
             id="inlineFormCustomSelect"
             style="width: 100%"
             required
@@ -52,6 +53,34 @@
           Generate Workout
         </button>
       </form>
+    </div>
+    <div class="container-fluid">
+      <div class="row cw">
+        <% if (rworkout[0] == null){ %>
+        <h2>No results</h2>
+        <% }else{ %> <% for(var i = 0; i < rworkout.length; i++){ %>
+        <div class="col-lg-4">
+          <div
+            id="cards"
+            class="card text-center text-dark bg-danger mb-3"
+            style="max-width: 18rem"
+          >
+            <div class="card-header">
+              <h2><%= rworkout[i].name %></h2>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title"><%= rworkout[i].equipment %></h4>
+              <h4 class="card-text"><%= rworkout[i].target %></h4>
+              <img
+                class="card-text"
+                src="<%= rworkout[i].gifUrl %>"
+                width="200"
+              />
+            </div>
+          </div>
+        </div>
+        <% } %> <% } %>
+      </div>
     </div>
   </div>
 </body>
