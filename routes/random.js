@@ -2,14 +2,13 @@ const path = require("path");
 const express = require("express");
 const router = express.Router();
 const axios = require("axios").default;
-
+//array that holds selected data from api call
 var rworkout = [];
 //randomizer route
 router.get("/random", function (req, res) {
   if (req.user != null) {
     console.log(req.user);
     let username = req.user.firstName;
-
     res.render("random", {
       rworkout: rworkout,
       name: username,
@@ -20,6 +19,7 @@ router.get("/random", function (req, res) {
   }
 });
 router.post("/random", function (req, res) {
+  //erases array that holds data retrieved from api
   rworkout = [];
   //gets input data from forms
   const bodyPart = req.body.bodyPart;
@@ -84,4 +84,4 @@ router.post("/random", function (req, res) {
     });
 });
 
-module.exports = router;
+module.exports = { router: router, rworkout: rworkout };

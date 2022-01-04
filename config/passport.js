@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
-module.exports = function (passport, getUserByEmail, getUserById) {
+module.exports = function (passport) {
+  //Login in using Google
   passport.use(
     new GoogleStrategy(
       {
@@ -14,7 +15,7 @@ module.exports = function (passport, getUserByEmail, getUserById) {
       },
       async (accessToken, refreshToken, profile, done) => {
         console.log(profile);
-
+        //new Google model
         const newGoogleUser = {
           googleId: profile.id,
           displayName: profile.displayName,
@@ -22,13 +23,14 @@ module.exports = function (passport, getUserByEmail, getUserById) {
           lastName: profile.name.familyName,
           image: profile.photos[0].value,
         };
-
+        //searches google model in MongoDb atlas
         try {
           let user = await User.findOne({ googleId: profile.id });
 
           if (user) {
             done(null, user);
           } else {
+            // cadds new google user model to db
             user = await User.create(newGoogleUser);
             done(null, user);
           }
@@ -39,12 +41,16 @@ module.exports = function (passport, getUserByEmail, getUserById) {
     )
   );
   /////////////////////////////////////////////////////////////
+
+  // fucntion that authenticate user (authenticaeuser function is a paremeter in the local strategy)
   const authenticateUser = (email, password, done) => {
+    //search user in db
     User.findOne({ email: email })
       .then((user) => {
         if (user == null) {
           return done(null, false, { message: "No user with that email" });
         } else {
+          // comares password if user email is found
           bcrypt.compare(password, user.password, (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
@@ -59,13 +65,15 @@ module.exports = function (passport, getUserByEmail, getUserById) {
         return done(null, false, { message: err });
       });
   };
-
+  //local strategey that is called on login page
   passport.use(new LocalStrategy({ usernameField: "email" }, authenticateUser));
 
+  // seralizes user session by id
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
 
+  // deserializes user by id
   passport.deserializeUser((id, done) => {
     User.findById(id, (err, user) => done(err, user));
   });

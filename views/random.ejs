@@ -76,6 +76,9 @@
                 src="<%= rworkout[i].gifUrl %>"
                 width="200"
               />
+              <form action="/favorites" method="post">
+                <button type="submit" value= "<%= i %>"" class="btn btn-outline-dark">favorite</button>
+                </form>
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ const router = express.Router();
 
 //cover page route
 router.get("/", function (req, res) {
-  //erases data from arrays
+  //checks if user is logged in or not
   if (req.user != null) {
     console.log(req.user);
     let username = req.user.firstName;

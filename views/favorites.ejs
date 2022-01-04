@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") -%>
+<link href="/styles.css" rel="stylesheet" />
+<body class="h-100 text-center text-light bgs">
+  <div class="search">
+    <div class="container-fluid">
+      <div class="row cw">
+        <% if (fav[0] == null){ %>
+        <h2>No results</h2>
+        <% }else{ %> <% for(var i = 0; i < fav.length; i++){ %>
+        <div class="col-lg-4">
+          <div
+            id="cards"
+            class="card text-center text-dark bg-danger mb-3"
+            style="max-width: 18rem"
+          >
+            <div class="card-header">
+              <h2><%= fav[i].name %></h2>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title"><%= fav[i].equipment %></h4>
+              <h4 class="card-text"><%= fav[i].target %></h4>
+              <img
+                class="card-text"
+                src="<%= fav[i].gifUrl %>"
+                width="200"
+              />
+              <form action="/favorites" method="post">
+                  <button type="submit" value= "<%= i %>"" class="btn btn-outline-dark">remove</button>
+                  </form>
+            </div>
+          </div>
+        </div>
+        <% } %> <% } %>
+      </div>
+    </div>
+  </div>
+</body>
