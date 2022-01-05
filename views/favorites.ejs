@@ -24,8 +24,8 @@
                 src="<%= fav[i].gifUrl %>"
                 width="200"
               />
-              <form action="/favorites" method="post">
-                  <button type="submit" value= "<%= i %>"" class="btn btn-outline-dark">remove</button>
+              <form action="/remove" method="post">
+                  <button type="submit" value= "<%= fav[i].id %>"" class="btn btn-outline-dark" name="removeBtn">remove</button>
                   </form>
             </div>
           </div>

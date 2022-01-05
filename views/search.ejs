@@ -102,6 +102,9 @@
               src="<%= workout[0][i].gifUrl %>"
               width="200"
             />
+            <form action="/searchFavorites" method="post">
+              <button type="submit" name="favoriteBtn" value= "<%= i %>"" class="btn btn-outline-dark">favorite</button>
+              </form>
           </div>
         </div>
       </div>

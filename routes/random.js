@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const router = express.Router();
 const axios = require("axios").default;
+const Favorite = require("../models/Favorites");
 //array that holds selected data from api call
 var rworkout = [];
 //randomizer route
@@ -84,4 +85,27 @@ router.post("/random", function (req, res) {
     });
 });
 
-module.exports = { router: router, rworkout: rworkout };
+router.post("/randomFavorites", async function (req, res) {
+  let favBtn = req.body.favoriteBtn;
+  let favBtnData = rworkout[favBtn];
+  console.log(favBtnData);
+  try {
+    const newFavorite = {
+      bodyPart: favBtnData.bodyPart,
+      equipment: favBtnData.equipment,
+      id: favBtnData.id,
+      gifUrl: favBtnData.gifUrl,
+      name: favBtnData.name,
+      target: favBtnData.target,
+      UserId: req.user.id,
+    };
+
+    await Favorite.create(newFavorite);
+    res.send("/random");
+  } catch (err) {
+    console.error(err);
+  }
+  res.redirect("/random");
+});
+
+module.exports = router;

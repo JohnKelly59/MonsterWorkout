@@ -66,8 +66,7 @@ app.delete("/logout", (req, res) => {
 app.use("/", require("./routes/cover"));
 app.use("/", require("./routes/home"));
 app.use("/", require("./routes/login"));
-const randomRouter = require("./routes/random");
-app.use("/", randomRouter.router);
+app.use("/", require("./routes/random"));
 
 app.use("/", require("./routes/register"));
 app.use("/", require("./routes/search"));
