@@ -3,11 +3,13 @@ const Favorite = require("../models/Favorites");
 const router = express.Router();
 const { ensureAuthInfo } = require("../middleware/auth");
 const mongoose = require("mongoose");
+const axios = require("axios").default;
 
 router.get("/favorites", ensureAuthInfo, function (req, res) {
   console.log(req.user);
   let username = req.user.firstName;
   let userid = req.user.id;
+  var fav = [];
   const favData = Favorite.find({ UserId: userid }, function (err, data) {
     if (err) {
       console.log(err);
@@ -17,8 +19,34 @@ router.get("/favorites", ensureAuthInfo, function (req, res) {
       res.render("favorites", { message: null, name: username, fav: "" });
       return;
     } else {
-      res.render("favorites", { message: null, name: username, fav: data });
-      return data;
+      var options = {
+        method: "GET",
+        url: "https://exercisedb.p.rapidapi.com/exercises",
+        headers: {
+          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+          "x-rapidapi-key": process.env.MY_KEY,
+        },
+      };
+      axios.request(options).then(function (response) {
+        // logging data retrieved from api
+        const json = response.data;
+
+        for (let i = 0; i < data.length; i++) {
+          for (let j = 0; j < json.length; j++) {
+            if (json[j].id === data[i].id) {
+              fav.push(json[j]);
+            }
+          }
+        }
+
+        console.log(fav);
+        res.render("favorites", {
+          message: null,
+          name: username,
+          fav: fav,
+        });
+        return data;
+      });
     }
   });
 });

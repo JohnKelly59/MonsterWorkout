@@ -108,12 +108,7 @@ router.post("/searchFavorites", async function (req, res) {
   console.log(favBtnData);
   try {
     const newFavorite = {
-      bodyPart: favBtnData.bodyPart,
-      equipment: favBtnData.equipment,
       id: favBtnData.id,
-      gifUrl: favBtnData.gifUrl,
-      name: favBtnData.name,
-      target: favBtnData.target,
       UserId: req.user.id,
     };
 
