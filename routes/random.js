@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios").default;
 const Favorite = require("../models/Favorites");
+const Daily = require("../models/Daily");
+
 //array that holds selected data from api call
 var rworkout = [];
 //randomizer route
@@ -86,21 +88,43 @@ router.post("/random", function (req, res) {
 });
 
 router.post("/randomFavorites", async function (req, res) {
+  //get favorite button value
   let favBtn = req.body.favoriteBtn;
+  // get value of card of button that was pressed
   let favBtnData = rworkout[favBtn];
   console.log(favBtnData);
   try {
+    //add card id to favorites db
     const newFavorite = {
       id: favBtnData.id,
       UserId: req.user.id,
     };
-
+    //redirect favorite
     await Favorite.create(newFavorite);
-    res.send("/random");
+    res.redirect("/random");
   } catch (err) {
     console.error(err);
   }
-  res.redirect("/random");
+});
+
+router.post("/randomDaily", async function (req, res) {
+  //get favorite button value
+  let dailyBtn = req.body.dailyBtn;
+  // get value of card of button that was pressed
+  let dailyBtnData = rworkout[dailyBtn];
+  console.log(dailyBtnData);
+  try {
+    //add card id to favorites db
+    const newDaily = {
+      id: dailyBtnData.id,
+      UserId: req.user.id,
+    };
+    //redirect favorite
+    await Daily.create(newDaily);
+    res.redirect("/random");
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 module.exports = router;

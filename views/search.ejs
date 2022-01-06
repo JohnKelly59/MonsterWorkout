@@ -92,6 +92,9 @@
           style="max-width: 18rem"
         >
           <div class="card-header">
+            <form action="/searchFavorites" method="post">
+              <button type="submit" name="dailyBtn" value= "<%= i %>" class="btn btn-outline-dark star"><i class="fas fa-star"></i></button>
+            </form>
             <h2><%= workout[0][i].name %></h2>
           </div>
           <div class="card-body">
@@ -102,8 +105,8 @@
               src="<%= workout[0][i].gifUrl %>"
               width="200"
             />
-            <form action="/searchFavorites" method="post">
-              <button type="submit" name="favoriteBtn" value= "<%= i %>"" class="btn btn-outline-dark">favorite</button>
+            <form action="/searchDaily" method="post">
+              <button type="submit" name="dailyBtn" value= "<%= i %>" class="btn btn-outline-dark">Add to Workout</button>
               </form>
           </div>
         </div>

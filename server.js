@@ -67,7 +67,7 @@ app.use("/", require("./routes/cover"));
 app.use("/", require("./routes/home"));
 app.use("/", require("./routes/login"));
 app.use("/", require("./routes/random"));
-
+app.use("/", require("./routes/daily"));
 app.use("/", require("./routes/register"));
 app.use("/", require("./routes/search"));
 app.use("/auth", require("./routes/auth"));

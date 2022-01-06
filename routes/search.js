@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios").default;
 const Favorite = require("../models/Favorites");
+const Daily = require("../models/Daily");
 
 //array to hold data from api call
 var workout = [];
@@ -102,22 +103,43 @@ router.post("/search", function (req, res) {
 });
 
 router.post("/searchFavorites", async function (req, res) {
+  //get favorite button value
   let favBtn = req.body.favoriteBtn;
-  console.log(favBtn);
+  // get value of card of button that was pressed
   let favBtnData = workout[0][favBtn];
   console.log(favBtnData);
   try {
+    //add card id to favorites db
     const newFavorite = {
       id: favBtnData.id,
       UserId: req.user.id,
     };
-
+    //redirect favorite
     await Favorite.create(newFavorite);
     res.redirect("/search");
   } catch (err) {
     console.error(err);
   }
-  res.redirect("/search");
+});
+
+router.post("/searchDaily", async function (req, res) {
+  //get favorite button value
+  let dailyBtn = req.body.dailyBtn;
+  // get value of card of button that was pressed
+  let dailyBtnData = workout[0][dailyBtn];
+  console.log(dailyBtnData);
+  try {
+    //add card id to favorites db
+    const newDaily = {
+      id: dailyBtnData.id,
+      UserId: req.user.id,
+    };
+    //redirect favorite
+    await Daily.create(newDaily);
+    res.redirect("/search");
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 module.exports = router;

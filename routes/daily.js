@@ -1,20 +1,20 @@
 const express = require("express");
-const Favorite = require("../models/Favorites");
+const Daily = require("../models/Daily");
 const router = express.Router();
 const { ensureAuthInfo } = require("../middleware/auth");
 const mongoose = require("mongoose");
 const axios = require("axios").default;
 
-router.get("/favorites", ensureAuthInfo, function (req, res) {
+router.get("/daily", ensureAuthInfo, function (req, res) {
   console.log(req.user);
   // get username
   let username = req.user.firstName;
   // get user id
   let userid = req.user.id;
   // hold favorite data in array
-  var fav = [];
+  var daily = [];
   // get saved favorites from database
-  const favData = Favorite.find({ UserId: userid }, function (err, data) {
+  const dailyData = Daily.find({ UserId: userid }, function (err, data) {
     // check error
     if (err) {
       console.log(err);
@@ -22,7 +22,7 @@ router.get("/favorites", ensureAuthInfo, function (req, res) {
       //check if db is empty
     } else if (data.length == 0) {
       console.log("No record found");
-      res.render("favorites", { message: null, name: username, fav: "" });
+      res.render("daily", { message: null, name: username, daily: "" });
       return;
     } else {
       //get all exercises from api
@@ -42,16 +42,16 @@ router.get("/favorites", ensureAuthInfo, function (req, res) {
           for (let j = 0; j < json.length; j++) {
             if (json[j].id === data[i].id) {
               //push data that matched to fav array
-              fav.push(json[j]);
+              daily.push(json[j]);
             }
           }
         }
 
-        console.log(fav);
-        res.render("favorites", {
+        console.log(daily);
+        res.render("daily", {
           message: null,
           name: username,
-          fav: fav,
+          daily: daily,
         });
         return data;
       });
@@ -59,14 +59,35 @@ router.get("/favorites", ensureAuthInfo, function (req, res) {
   });
 });
 
-router.post("/remove", function (req, res) {
+router.post("/dailyFavorites", async function (req, res) {
+  //get favorite button value
+  let favBtn = req.body.favoriteBtn;
+  console.log(daily);
+  // get value of card of button that was pressed
+  let favBtnData = daily[favBtn];
+  console.log(favBtnData);
+  try {
+    //add card id to favorites db
+    const newdaily = {
+      id: favBtnData.id,
+      UserId: req.user.id,
+    };
+    //redirect favorite
+    await Daily.create(newdaily);
+    res.redirect("/daily");
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+router.post("/removeWorkout", function (req, res) {
   // get user id
   let userid = req.user.id;
   // get value of remove button
   let removeButton = req.body.removeBtn;
   console.log(removeButton);
   // delete favorite exercise from favorite db
-  Favorite.deleteOne(
+  Daily.deleteOne(
     // see if user id and exercise id match
     { userId: userid, id: removeButton },
     function (err, data) {
@@ -77,10 +98,10 @@ router.post("/remove", function (req, res) {
         //check if favorite db is empty
       } else if (data.length == 0) {
         console.log("No record found");
-        res.redirect("/favorites");
+        res.redirect("/daily");
         return;
       } else {
-        res.redirect("/favorites");
+        res.redirect("/daily");
       }
     }
   );
