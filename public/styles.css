@@ -185,3 +185,32 @@ body {
 .star {
   border: none;
 }
+
+.form-popup {
+  display: none;
+  text-align: center;
+  position: fixed;
+  margin: auto;
+  z-index: 9;
+  border-radius: 25px;
+  margin-top: 150px;
+}
+
+.newLog {
+  width: 25%;
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+}
+
+.newLogBtn {
+  text-align: center;
+  margin: auto;
+}
+
+.data {
+  width: 100%;
+  max-width: 75%;
+  padding: 15px;
+  margin: auto;
+}

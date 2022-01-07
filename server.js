@@ -72,6 +72,7 @@ app.use("/", require("./routes/register"));
 app.use("/", require("./routes/search"));
 app.use("/auth", require("./routes/auth"));
 app.use("/", require("./routes/favorites"));
+app.use("/", require("./routes/log"));
 
 // port info
 const PORT = process.env.PORT || 3000;
