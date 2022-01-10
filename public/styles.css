@@ -188,8 +188,10 @@ Custom default button */ .btn-secondary,
   position: fixed;
   margin: auto;
   z-index: 9;
+  padding: 15px;
   border-radius: 25px;
   margin-top: 150px;
+  box-shadow: 2px 2px 4px #000000;
 }
 
 .newLog {
@@ -213,4 +215,17 @@ Custom default button */ .btn-secondary,
 
 .float {
   float: right;
+}
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 15px;
+}
+
+.inline {
+  display: inline;
+}
+
+.card {
+  box-shadow: 2px 2px 4px #000000;
 }

@@ -76,7 +76,7 @@
       <div class >
         <div
           id="cards"
-          class="card text-center text-dark bg-danger "
+          class="card text-center text-light bg-danger "
           style=
         >
           <div class=" card-header">
@@ -84,12 +84,11 @@
           </div>
           <div class="card-body">
             <h4 class="card-title"><%= logs[0][i].body %></h4>
-            <h6 class="card-title"><%= logs[0][i].date %></h6>
-            
-            <button value= "<%= logs[0][i].id %>" class="btn btn-outline-dark" id="editButton<%= i %>" onclick="openEditForm(this.id)" name="editBtn">Edit</button>
+            <h6 class="card-title"><%= logs[0][i].date %></h6>     
+            <button value= "<%= logs[0][i].id %>" class="btn btn-outline-dark text-light" id="editButton<%= i %>" onclick="openEditForm(this.id)" name="editBtn">Edit</button>
             <form action="/removeLog" method="post">
-                <button type="submit" value= "<%= logs[0][i].id %>" class="btn btn-outline-dark" name="removeBtn">Remove</button>
-                </form>
+                <button type="submit" value= "<%= logs[0][i].id %>" class="btn btn-outline-dark text-light" name="removeBtn">Remove</button>
+                </form>  
           </div>
         </div>
         <br />
