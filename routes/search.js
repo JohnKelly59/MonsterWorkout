@@ -106,6 +106,7 @@ router.post("/searchFavorites", async function (req, res) {
   //get favorite button value
   let favBtn = req.body.favoriteBtn;
   // get value of card of button that was pressed
+  console.log(favBtn);
   let favBtnData = workout[0][favBtn];
   console.log(favBtnData);
   try {

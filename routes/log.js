@@ -57,7 +57,7 @@ router.post("/removeLog", function (req, res) {
   // delete favorite exercise from favorite db
   Logs.deleteOne(
     // see if user id and exercise id match
-    { userId: userid, id: removeButton },
+    { userId: userid, _id: removeButton },
     function (err, data) {
       // log error
       if (err) {
@@ -76,31 +76,35 @@ router.post("/removeLog", function (req, res) {
 });
 
 router.post("/editLog", async function (req, res) {
-    // retrieves name and email from user
-    let title = req.body.newLogTitle;
-    let editButton = req.data.editBtn;
-    let body = req.body.newLogBody;
-    const user = req.user.id;
-    var dateObj = new Date();
-    var month = dateObj.getUTCMonth() + 1; //months from 1-12
-    var day = dateObj.getUTCDate();
-    var year = dateObj.getUTCFullYear();
-    console.log(title, body);
-    try {
-      const filter = {
-        title: title,
-        body: body,
-        UserId: user,
-        date: month + "/" + day + "/" + year,
-      };
+  // retrieves name and email from user
+  let title = req.body.newLogTitle;
+  let body = req.body.newLogBody;
+  let saveButton = req.body.saveButton;
+  const user = req.user.id;
+  var dateObj = new Date();
+  var month = dateObj.getUTCMonth() + 1; //months from 1-12
+  var day = dateObj.getUTCDate();
+  var year = dateObj.getUTCFullYear();
+  console.log(title, body);
+  console.log(saveButton);
+  try {
+    const filter = {
+      UserId: user,
+      _id: saveButton,
+    };
+    const update = {
+      title: title,
+      body: body,
+      UserId: user,
+      date: month + "/" + day + "/" + year,
+    };
 
-      const
-      //creates new log
-      await Logs.findOneAndUpdate(new);
-      res.redirect("/log");
-    } catch (err) {
-      console.error(err);
-    }
-  });
+    //creates new log
+    await Logs.findOneAndUpdate(filter, update);
+    res.redirect("/log");
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 module.exports = router;
