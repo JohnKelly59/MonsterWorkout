@@ -70,11 +70,11 @@ Custom default button */ .btn-secondary,
 .fade-in-text-btn {
   display: inline-block;
 
-  animation: fadeIn linear 9s;
-  -webkit-animation: fadeIn linear 9s;
-  -moz-animation: fadeIn linear 9s;
-  -o-animation: fadeIn linear 9s;
-  -ms-animation: fadeIn linear 9s;
+  animation: fadeIn linear 5s;
+  -webkit-animation: fadeIn linear 5s;
+  -moz-animation: fadeIn linear 5s;
+  -o-animation: fadeIn linear 5s;
+  -ms-animation: fadeIn linear 5s;
 }
 
 @keyframes fadeIn {
