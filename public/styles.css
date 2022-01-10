@@ -1,5 +1,5 @@
 .bgs {
-  background: url("/images/monsterBackground.jpg") no-repeat center center fixed;
+  background: url("/images/monsBackground.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -16,10 +16,6 @@ Custom default button */ .btn-secondary,
 /*
  * Base structure
  */
-
-body {
-  align-items: center;
-}
 
 .cover-container {
   max-width: 42em;
@@ -213,4 +209,8 @@ body {
   max-width: 75%;
   padding: 15px;
   margin: auto;
+}
+
+.float {
+  float: right;
 }

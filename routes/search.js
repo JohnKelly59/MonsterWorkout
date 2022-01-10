@@ -143,4 +143,37 @@ router.post("/searchDaily", async function (req, res) {
   }
 });
 
+router.post("/searchSearchBox", async function (req, res) {
+  let searchBox = req.body.searchBox.toLowerCase();
+  console.log(searchBox);
+  workout = [];
+  let result = [];
+  // api options
+  var options = {
+    method: "GET",
+    url: "https://exercisedb.p.rapidapi.com/exercises",
+    headers: {
+      "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+      "x-rapidapi-key": process.env.MY_KEY,
+    },
+  };
+  axios
+    .request(options)
+    .then(function (response) {
+      // logging data retrieved from api
+      const json = response.data;
+
+      result = json.filter((exercise) =>
+        exercise.name.toLowerCase().includes(searchBox)
+      );
+      workout.push(result);
+      res.redirect("/search");
+    })
+    .catch(function (error) {
+      //console.log(options);
+      console.error(error);
+      res.redirect("/");
+    });
+});
+
 module.exports = router;

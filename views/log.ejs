@@ -6,7 +6,7 @@
       <div clas="form-box p-5 mb-4 bg-dark rounded-3">
 <h2>Log</h2>
 
-<button class="newLogBtn btn btn-lg btn-light" id="newLogBtn" onclick="openForm()">New Log</button>
+<button class="newLogBtn btn btn-lg btn-danger" id="newLogBtn" onclick="openForm()">New Log</button>
 <div class="newLog">
     <div class="form-popup bg-dark" id="myForm">
         <form action="/addLog" method="post" class="form-container">
@@ -48,6 +48,7 @@
                     type="text"
                    placeholder="Title"
                     id="floatingInput"
+                    required
                   />
                   
                 </div>
@@ -133,7 +134,7 @@ clickedButtonId = clicked_id;
     }
 
     function closeEditForm() {
-
+// hides edit form
       document.getElementById("myEditForm").style.display = "none";
     }
 
