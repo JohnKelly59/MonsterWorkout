@@ -14,7 +14,7 @@ const methodOverride = require("method-override");
 
 const connectDB = require("./config/db");
 
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: "./config/.env" });
 
 // Passport config
 require("./config/passport")(passport);
