@@ -229,3 +229,8 @@ Custom default button */ .btn-secondary,
 .card {
   box-shadow: 2px 2px 4px #000000;
 }
+
+.title {
+  margin: 30px;
+  padding: 10px;
+}

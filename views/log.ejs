@@ -3,8 +3,8 @@
 
 <body class=" text-center text-light bgs">
     <div class="newLogData">
-      <div clas="form-box p-5 mb-4 bg-dark rounded-3">
-<h2>Log</h2>
+  
+<h1 class=" h-75 title bg-danger rounded-3">Log</h1>
 
 <button class="newLogBtn btn btn-lg btn-danger" id="newLogBtn" onclick="openForm()">New Log</button>
 <div class="newLog">
@@ -97,7 +97,7 @@
       <% } %>  <% } %>
     </div>
   </div>
-  
+  </div>
 </div>
 
   <script>
@@ -106,7 +106,7 @@
         //shows log form
       document.getElementById("myForm").style.display = "block";
       // hide new log button
-      document.getElementById("newLogBtn").style.display = "none";
+     this.disabled = true
 
     }
     
