@@ -47,14 +47,12 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname + "/public")));
 
 // using body parser
+app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
-
-//set views to ejs
-app.set("view engine", "ejs");
 
 //logs out user
 app.delete("/logout", (req, res) => {
@@ -63,16 +61,13 @@ app.delete("/logout", (req, res) => {
 });
 
 // Routes
-app.use("/", require("./routes/cover"));
-app.use("/", require("./routes/home"));
-app.use("/", require("./routes/login"));
 app.use("/", require("./routes/random"));
-app.use("/", require("./routes/daily"));
 app.use("/", require("./routes/register"));
 app.use("/", require("./routes/search"));
 app.use("/auth", require("./routes/auth"));
 app.use("/", require("./routes/favorites"));
 app.use("/", require("./routes/log"));
+//app.use("/", require("./routes/react"));
 
 // port info
 const PORT = process.env.PORT || 8081;

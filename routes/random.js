@@ -23,10 +23,11 @@ router.get("/random", function (req, res) {
 });
 router.post("/random", function (req, res) {
   //erases array that holds data retrieved from api
+  console.log("random");
   rworkout = [];
   //gets input data from forms
   const bodyPart = req.body.bodyPart;
-  const number = req.body.num;
+  const number = req.body.exercises;
   //api options
   var options = {
     method: "GET",
@@ -75,9 +76,9 @@ router.post("/random", function (req, res) {
       // Shuffle array
       const shuffled = result.sort(() => 0.5 - Math.random());
 
-      rworkout = shuffled.slice(0, number);
-      console.log(rworkout + " work");
-      res.redirect("/random");
+      rworkout = shuffled.slice(0, parseInt(number));
+      console.log(rworkout);
+      res.send(rworkout);
     })
     //catch errors
     .catch(function (error) {

@@ -5,7 +5,7 @@ const { ensureAuthInfo } = require("../middleware/auth");
 const mongoose = require("mongoose");
 const axios = require("axios").default;
 
-router.get("/favorites", ensureAuthInfo, function (req, res) {
+router.get("/favorites", function (req, res) {
   console.log(req.user);
   // get username
   let username = req.user.firstName;

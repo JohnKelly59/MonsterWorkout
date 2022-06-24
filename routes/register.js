@@ -5,19 +5,6 @@ const User = require("../models/User");
 //checks to see if user is logged in
 const { ensureAuth } = require("../middleware/auth");
 
-//register route
-router.get("/register", ensureAuth, function (req, res) {
-  //checks if user name is found
-  if (req.user != null) {
-    console.log(req.user);
-    let username = req.user.firstName;
-    res.render("register", { message: null, name: username });
-  } else {
-    let username = "";
-    res.render("register", { message: null, name: username });
-  }
-});
-
 router.post("/register", async function (req, res, done) {
   // retrieves name and email from user
   const name = req.body.name;
@@ -41,10 +28,13 @@ router.post("/register", async function (req, res, done) {
       //creates new user
       user = await User.create(newNormalUser);
       done(null, user);
-      res.redirect("/login");
+      res.status(200).send(user);
     }
   } catch (err) {
     console.error(err);
+    resres.status(400).send({
+      message: error,
+    });
   }
 });
 

@@ -7,30 +7,14 @@ const Daily = require("../models/Daily");
 //array to hold data from api call
 var workout = [];
 
-// search route
-router.get("/search", function (req, res) {
-  //checks if user name is found
-  if (req.user != null) {
-    console.log(req.user);
-    let username = req.user.firstName;
-
-    res.render("search", {
-      workout: workout,
-      name: username,
-    });
-  } else {
-    let username = "";
-    res.render("search", { workout: workout, name: username });
-  }
-});
-
 router.post("/search", function (req, res) {
+  console.log("Man: ", req.body);
   //erases array that holds data retrieved from api
   workout = [];
   //reteives front-end data
   const bodyPart = req.body.bodyPart;
   const equipment = req.body.equipment;
-  const target = req.body.target;
+  const target = req.body.targetMuscle;
   // api options
   var options = {
     method: "GET",
@@ -93,12 +77,12 @@ router.post("/search", function (req, res) {
         console.log("8" + result);
       }
       workout.push(result);
-      res.redirect("/search");
+      res.send(workout);
     })
     .catch(function (error) {
       //console.log(options);
       console.error(error);
-      res.redirect("/");
+      res.send(error);
     });
 });
 
